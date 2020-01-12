@@ -1,0 +1,33 @@
+version: '3'
+
+services:
+  rabbitmq:
+      image: 'rabbitmq:3-management-alpine'
+      hostname: rabbitmq
+      environment:
+          - RABBITMQ_DEFAULT_USER=myUserName
+          - RABBITMQ_DEFAULT_PASS=myPassword
+      ports:
+          - '15672:15672'
+          - '5672:5672'
+      expose:
+          - 15672
+          - 5672
+
+  rabbitmq-create-queues:
+      image: activatedgeek/rabbitmqadmin:latest
+      depends_on:
+          - rabbitmq
+      hostname: rabbitmq-create-queues
+      entrypoint: /bin/sh -c
+      command: >
+          "
+              while ! nc -z rabbitmq 5672; do echo waiting; sleep 3; done;
+              rabbitmqadmin --host rabbitmq -umyUserName -pmyPassword declare exchange name=createaccountmessage type=fanout
+              rabbitmqadmin --host rabbitmq -umyUserName -pmyPassword declare queue name=createaccountmessage durable=false
+              rabbitmqadmin --host rabbitmq -umyUserName -pmyPassword declare binding source="createaccountmessage" destination="createaccountmessage" destination_type="queue"
+              rabbitmqadmin --host rabbitmq -umyUserName -pmyPassword list queues
+              echo 'RABBIT-DONE!' 
+          "
+      extra_hosts:
+          - "moby:127.0.0.1"
