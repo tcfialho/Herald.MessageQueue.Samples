@@ -23,9 +23,9 @@ services:
       command: >
           "
               while ! nc -z rabbitmq 5672; do echo waiting; sleep 3; done;
-              rabbitmqadmin --host rabbitmq -umyUserName -pmyPassword declare exchange name=createaccountmessage type=fanout
-              rabbitmqadmin --host rabbitmq -umyUserName -pmyPassword declare queue name=createaccountmessage durable=false
-              rabbitmqadmin --host rabbitmq -umyUserName -pmyPassword declare binding source="createaccountmessage" destination="createaccountmessage" destination_type="queue"
+              rabbitmqadmin --host rabbitmq -umyUserName -pmyPassword declare exchange name=CreateAccountMessage type=fanout
+              rabbitmqadmin --host rabbitmq -umyUserName -pmyPassword declare queue name=CreateAccountMessage durable=false
+              rabbitmqadmin --host rabbitmq -umyUserName -pmyPassword declare binding source="CreateAccountMessage" destination="CreateAccountMessage" destination_type="queue"
               rabbitmqadmin --host rabbitmq -umyUserName -pmyPassword list queues
               echo 'RABBIT-DONE!' 
           "

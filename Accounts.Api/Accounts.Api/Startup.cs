@@ -1,6 +1,8 @@
+using Accounts.Domain.Messages;
 using Accounts.Domain.Models;
 
 using Herald.MessageQueue;
+using Herald.MessageQueue.HealthCheck.RabbitMq;
 using Herald.MessageQueue.RabbitMq;
 
 using MediatR;
@@ -90,10 +92,13 @@ namespace Accounts.Api
             {
                 setup.Host = "localhost";
                 setup.Port = "5672";
-                setup.ExchangeName = "createaccountmessage";
+                setup.ExchangeName = nameof(CreateAccountMessage);
                 setup.Username = "myUserName";
                 setup.Password = "myPassword";
             });
+
+            services.AddHealthChecks()
+                    .AddRabbitMqCheck<CreateAccountMessage>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -121,6 +126,8 @@ namespace Accounts.Api
             {
                 setup.SwaggerEndpoint($"/swagger/{_swaggerInfo.Version}/swagger.json", _swaggerInfo.Version);
             });
+
+            app.UseHealthChecks("/hc");
         }
     }
 }

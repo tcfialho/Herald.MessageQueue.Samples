@@ -1,7 +1,9 @@
 ﻿
+using Accounts.Domain.Messages;
 using Accounts.Domain.Models;
 using Accounts.Worker.Tasks;
 
+using Herald.MessageQueue.HealthCheck.RabbitMq;
 using Herald.MessageQueue.RabbitMq;
 
 using MediatR;
@@ -26,11 +28,14 @@ namespace Accounts.Worker
         {
             services.AddHostedService<CreateAccountTask>();
 
+            services.AddHealthChecks()
+                    .AddRabbitMqCheck<CreateAccountMessage>();
+
             services.AddMessageQueueRabbitMq(setup =>
             {
                 setup.Host = "localhost";
                 setup.Port = "5672";
-                setup.ExchangeName = "createaccountmessage";
+                setup.ExchangeName = nameof(CreateAccountMessage);
                 setup.Username = "myUserName";
                 setup.Password = "myPassword";
             });
@@ -40,6 +45,7 @@ namespace Accounts.Worker
 
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
         {
+            app.UseHealthChecks("/hc");
         }
     }
 }
