@@ -28,11 +28,10 @@ namespace Accounts.Worker.Tasks
 
             while (!stoppingToken.IsCancellationRequested)
             {
-                await foreach (var message in _messageQueue.Receive<CreateAccountMessage>())
+                await foreach (var message in _messageQueue.Receive<CreateAccountMessage>(stoppingToken))
                 {
                     _logger.LogInformation($"Consuming message: {message.CreationDate} - {message.Account.Id} - {message.Account.Name}");
                 }
-                await Task.Delay(1000, stoppingToken);
             }
             await Task.CompletedTask;
         }

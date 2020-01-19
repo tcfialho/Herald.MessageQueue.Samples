@@ -9,7 +9,7 @@
 
   <ItemGroup>
     <PackageReference Include="Herald.MessageQueue.HealthCheck.RabbitMq" Version="1.0.2" />
-    <PackageReference Include="Herald.MessageQueue.RabbitMq" Version="1.1.3" />
+    <PackageReference Include="Herald.MessageQueue.RabbitMq" Version="1.2.0" />
     <PackageReference Include="Microsoft.Extensions.Logging.Debug" Version="3.0.0" />
     <PackageReference Include="Microsoft.VisualStudio.Azure.Containers.Tools.Targets" Version="1.9.10" />
     <PackageReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Design" Version="3.0.0" />
