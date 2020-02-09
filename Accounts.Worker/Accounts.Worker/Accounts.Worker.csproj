@@ -8,11 +8,10 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="Herald.MessageQueue.HealthCheck.RabbitMq" Version="1.0.2" />
-    <PackageReference Include="Herald.MessageQueue.RabbitMq" Version="1.2.0" />
+    <PackageReference Include="Herald.MessageQueue.HealthCheck.RabbitMq" Version="2.0.0" />
+    <PackageReference Include="Herald.MessageQueue.RabbitMq" Version="3.0.1" />
     <PackageReference Include="MediatR" Version="8.0.0" />
     <PackageReference Include="MediatR.Extensions.Microsoft.DependencyInjection" Version="8.0.0" />
-    <PackageReference Include="Microsoft.AspNetCore.Razor.Design" Version="2.2.0" PrivateAssets="All" />
     <PackageReference Include="Microsoft.Extensions.Hosting" Version="3.0.0" />
     <PackageReference Include="Microsoft.Extensions.Http" Version="3.0.0" />
     <PackageReference Include="Microsoft.Extensions.PlatformAbstractions" Version="1.1.0" />

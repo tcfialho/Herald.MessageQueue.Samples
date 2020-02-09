@@ -35,7 +35,6 @@ namespace Accounts.Worker
             {
                 setup.Host = "localhost";
                 setup.Port = "5672";
-                setup.ExchangeName = nameof(CreateAccountMessage);
                 setup.Username = "myUserName";
                 setup.Password = "myPassword";
             });
