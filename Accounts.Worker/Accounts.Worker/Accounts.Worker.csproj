@@ -8,14 +8,14 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="Herald.MessageQueue.HealthCheck.RabbitMq" Version="2.0.0" />
-    <PackageReference Include="Herald.MessageQueue.RabbitMq" Version="3.0.1" />
-    <PackageReference Include="MediatR" Version="8.0.0" />
+    <PackageReference Include="Herald.MessageQueue.HealthCheck.RabbitMq" Version="2.0.1" />
+    <PackageReference Include="Herald.MessageQueue.RabbitMq" Version="3.1.0" />
+    <PackageReference Include="MediatR" Version="8.0.1" />
     <PackageReference Include="MediatR.Extensions.Microsoft.DependencyInjection" Version="8.0.0" />
     <PackageReference Include="Microsoft.Extensions.Hosting" Version="3.0.0" />
     <PackageReference Include="Microsoft.Extensions.Http" Version="3.0.0" />
     <PackageReference Include="Microsoft.Extensions.PlatformAbstractions" Version="1.1.0" />
-    <PackageReference Include="Microsoft.VisualStudio.Azure.Containers.Tools.Targets" Version="1.9.10" />
+    <PackageReference Include="Microsoft.VisualStudio.Azure.Containers.Tools.Targets" Version="1.10.8" />
   </ItemGroup>
 
   <ItemGroup>
