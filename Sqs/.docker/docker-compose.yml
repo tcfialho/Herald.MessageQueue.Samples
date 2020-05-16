@@ -1,0 +1,32 @@
+version: '3'
+
+services:
+  localstack:
+    image: localstack/localstack:latest
+    ports:
+      - '4576:4576'
+    environment:
+      - SERVICES=sqs
+
+  localstack-create-queues:
+    image: mesosphere/aws-cli:latest
+    depends_on:
+      - localstack
+    hostname: localstack-create-queues
+    entrypoint: /bin/sh -c
+    command: >
+      "
+        while ! aws --endpoint-url=http://localstack:4576 sqs list-queues > /dev/null; do echo waiting; sleep 3; done;
+        aws --endpoint-url=http://localstack:4576 sqs create-queue --queue-name CreateAccountMessage
+        aws --endpoint-url=http://localstack:4576 sqs create-queue --queue-name CreateAccountMessage.fifo --attributes FifoQueue=true
+        
+        aws --endpoint-url=http://localstack:4576 sqs list-queues
+        echo 'SQS-DONE!' 
+      "
+    environment:
+      - AWS_ACCESS_KEY_ID=guest
+      - AWS_SECRET_ACCESS_KEY=guest
+      - AWS_DEFAULT_REGION=us-east-1
+      - AWS_ENDPOINT=http://localhost:4576
+    extra_hosts:
+      - "moby:127.0.0.1"
