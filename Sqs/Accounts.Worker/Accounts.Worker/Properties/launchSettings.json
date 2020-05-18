@@ -3,7 +3,8 @@
     "Accounts.Worker": {
       "commandName": "Project",
       "environmentVariables": {
-        "DOTNET_ENVIRONMENT": "Development"
+        "ASPNETCORE_URLS": "http://+:5002",
+        "ASPNETCORE_ENVIRONMENT": "Development"
       }
     },
     "Docker": {

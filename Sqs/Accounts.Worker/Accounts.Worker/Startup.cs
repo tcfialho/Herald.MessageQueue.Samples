@@ -12,6 +12,7 @@ using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
+using Microsoft.Extensions.Logging;
 
 namespace Accounts.Worker
 {
@@ -27,20 +28,14 @@ namespace Accounts.Worker
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddHostedService<CreateAccountTask>();
+            services.AddMediatR(typeof(Account).Assembly);
 
             services.AddHealthChecks().AddSqsCheck<CreateAccountMessage>();
-            services.AddMessageQueueSqs(setup =>
-            {
-                setup.Host = "http://127.0.0.1";
-                setup.Port = "4576";
-                setup.GroupId = nameof(CreateAccountMessage);
-                setup.RegionEndpoint = "us-east-1";
-                setup.VisibilityTimeout = 1;
-                setup.WaitTimeSeconds = 1;
-                setup.EnableFifo = true;
-            });
-
-            services.AddMediatR(typeof(Account).Assembly);
+            services.AddMessageQueueSqs(setup => Configuration.GetSection("MessageQueueOptions").Bind(setup));
+            services.AddLogging(loggin => loggin.AddDebug()
+                                                .AddConsole()
+                                                .SetMinimumLevel(LogLevel.Information)
+                                                .AddConfiguration(Configuration.GetSection("Logging")));
         }
 
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)

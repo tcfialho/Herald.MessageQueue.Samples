@@ -12,6 +12,7 @@ using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
+using Microsoft.Extensions.Logging;
 
 namespace Accounts.Worker
 {
@@ -27,17 +28,15 @@ namespace Accounts.Worker
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddHostedService<CreateAccountTask>();
+            services.AddMediatR(typeof(Account).Assembly);
 
             services.AddHealthChecks().AddRabbitMqCheck<CreateAccountMessage>();
-            services.AddMessageQueueRabbitMq(setup =>
-            {
-                setup.Host = "localhost";
-                setup.Port = "5672";
-                setup.Username = "myUserName";
-                setup.Password = "myPassword";
-            });
+            services.AddMessageQueueRabbitMq(setup => Configuration.GetSection("MessageQueueOptions").Bind(setup));
 
-            services.AddMediatR(typeof(Account).Assembly);
+            services.AddLogging(loggin => loggin.AddDebug()
+                                    .AddConsole()
+                                    .SetMinimumLevel(LogLevel.Information)
+                                    .AddConfiguration(Configuration.GetSection("Logging")));
         }
 
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)

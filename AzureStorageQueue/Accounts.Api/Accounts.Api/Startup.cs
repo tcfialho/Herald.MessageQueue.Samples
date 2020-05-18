@@ -11,6 +11,7 @@ using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
+using Microsoft.Extensions.Logging;
 using Microsoft.OpenApi.Models;
 
 namespace Accounts.Api
@@ -41,10 +42,11 @@ namespace Accounts.Api
             services.AddMediatR(typeof(Account).Assembly);
 
             services.AddHealthChecks().AddAzureStorageQueueCheck<CreateAccountMessage>();
-            services.AddMessageQueueAzureStorageQueue(setup =>
-            {
-                setup.ConnectionString = "UseDevelopmentStorage=true";
-            });
+            services.AddMessageQueueAzureStorageQueue(setup => Configuration.GetSection("MessageQueueOptions").Bind(setup));
+            services.AddLogging(loggin => loggin.AddDebug()
+                                                .AddConsole()
+                                                .SetMinimumLevel(LogLevel.Information)
+                                                .AddConfiguration(Configuration.GetSection("Logging")));
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

@@ -1,11 +1,11 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio 15
-VisualStudioVersion = 15.0.26124.0
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.30104.148
 MinimumVisualStudioVersion = 15.0.26124.0
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Accounts.Domain", "Accounts.Domain\Accounts.Domain.csproj", "{F3E829D1-BA0B-42B1-BF2F-84A28CDEFF16}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Accounts.Domain", "Accounts.Domain\Accounts.Domain.csproj", "{F3E829D1-BA0B-42B1-BF2F-84A28CDEFF16}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Accounts.Worker", "Accounts.Worker\Accounts.Worker.csproj", "{1295F40B-A15D-4FBB-A055-51CF3E1B48C5}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Accounts.Worker", "Accounts.Worker\Accounts.Worker.csproj", "{1295F40B-A15D-4FBB-A055-51CF3E1B48C5}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -15,9 +15,6 @@ Global
 		Release|Any CPU = Release|Any CPU
 		Release|x64 = Release|x64
 		Release|x86 = Release|x86
-	EndGlobalSection
-	GlobalSection(SolutionProperties) = preSolution
-		HideSolutionNode = FALSE
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
 		{F3E829D1-BA0B-42B1-BF2F-84A28CDEFF16}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
@@ -44,5 +41,11 @@ Global
 		{1295F40B-A15D-4FBB-A055-51CF3E1B48C5}.Release|x64.Build.0 = Release|Any CPU
 		{1295F40B-A15D-4FBB-A055-51CF3E1B48C5}.Release|x86.ActiveCfg = Release|Any CPU
 		{1295F40B-A15D-4FBB-A055-51CF3E1B48C5}.Release|x86.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {34D1D781-4EDD-49F9-A982-C93308D1FD47}
 	EndGlobalSection
 EndGlobal

@@ -12,6 +12,7 @@ using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
+using Microsoft.Extensions.Logging;
 
 namespace Accounts.Worker
 {
@@ -28,13 +29,14 @@ namespace Accounts.Worker
         {
             services.AddHostedService<CreateAccountTask>();
 
-            services.AddHealthChecks().AddAzureStorageQueueCheck<CreateAccountMessage>();
-            services.AddMessageQueueAzureStorageQueue(setup =>
-            {
-                setup.ConnectionString = "UseDevelopmentStorage=true";
-            });
-
             services.AddMediatR(typeof(Account).Assembly);
+
+            services.AddHealthChecks().AddAzureStorageQueueCheck<CreateAccountMessage>();
+            services.AddMessageQueueAzureStorageQueue(setup => Configuration.GetSection("MessageQueueOptions").Bind(setup));
+            services.AddLogging(loggin => loggin.AddDebug()
+                                                .AddConsole()
+                                                .SetMinimumLevel(LogLevel.Information)
+                                                .AddConfiguration(Configuration.GetSection("Logging")));
         }
 
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)

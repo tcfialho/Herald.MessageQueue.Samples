@@ -11,6 +11,7 @@ using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
+using Microsoft.Extensions.Logging;
 using Microsoft.OpenApi.Models;
 
 namespace Accounts.Api
@@ -41,11 +42,12 @@ namespace Accounts.Api
             services.AddMediatR(typeof(Account).Assembly);
 
             services.AddHealthChecks().AddKafkaCheck<CreateAccountMessage>();
-            services.AddMessageQueueKafka(setup =>
-            {
-                setup.Host = "localhost:9092";
-                setup.GroupId = nameof(CreateAccountMessage);
-            });
+            services.AddMessageQueueKafka(setup => Configuration.GetSection("MessageQueueOptions").Bind(setup));
+
+            services.AddLogging(loggin => loggin.AddDebug()
+                        .AddConsole()
+                        .SetMinimumLevel(LogLevel.Information)
+                        .AddConfiguration(Configuration.GetSection("Logging")));
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
