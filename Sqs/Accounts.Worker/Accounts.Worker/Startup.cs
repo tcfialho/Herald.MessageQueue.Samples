@@ -1,7 +1,6 @@
 ﻿
 using Accounts.Domain.Messages;
 using Accounts.Domain.Models;
-using Accounts.Worker.Tasks;
 
 using Herald.MessageQueue.HealthCheck.Sqs;
 using Herald.MessageQueue.Sqs;
@@ -27,11 +26,11 @@ namespace Accounts.Worker
 
         public void ConfigureServices(IServiceCollection services)
         {
-            services.AddHostedService<CreateAccountTask>();
             services.AddMediatR(typeof(Account).Assembly);
 
             services.AddHealthChecks().AddSqsCheck<CreateAccountMessage>();
             services.AddMessageQueueSqs(setup => Configuration.GetSection("MessageQueueOptions").Bind(setup));
+
             services.AddLogging(loggin => loggin.AddDebug()
                                                 .AddConsole()
                                                 .SetMinimumLevel(LogLevel.Information)

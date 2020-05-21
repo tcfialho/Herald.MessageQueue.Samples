@@ -1,7 +1,6 @@
 ﻿
 using Accounts.Domain.Messages;
 using Accounts.Domain.Models;
-using Accounts.Worker.Tasks;
 
 using Herald.MessageQueue.HealthCheck.RabbitMq;
 using Herald.MessageQueue.RabbitMq;
@@ -27,7 +26,6 @@ namespace Accounts.Worker
 
         public void ConfigureServices(IServiceCollection services)
         {
-            services.AddHostedService<CreateAccountTask>();
             services.AddMediatR(typeof(Account).Assembly);
 
             services.AddHealthChecks().AddRabbitMqCheck<CreateAccountMessage>();

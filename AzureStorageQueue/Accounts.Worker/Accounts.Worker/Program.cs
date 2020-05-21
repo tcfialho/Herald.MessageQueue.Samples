@@ -1,4 +1,7 @@
+using Accounts.Worker.Tasks;
+
 using Microsoft.AspNetCore.Hosting;
+using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 
 using System.Diagnostics.CodeAnalysis;
@@ -19,6 +22,10 @@ namespace Accounts.Worker
                        .ConfigureWebHostDefaults(webBuilder =>
                        {
                            webBuilder.UseStartup<Startup>();
+                       })
+                       .ConfigureServices(services =>
+                       {
+                           services.AddHostedService<CreateAccountTask>();
                        });
         }
     }
