@@ -7,6 +7,8 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Accounts.Domain", "Accounts
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Accounts.Worker", "Accounts.Worker\Accounts.Worker.csproj", "{1295F40B-A15D-4FBB-A055-51CF3E1B48C5}"
 EndProject
+Project("{E53339B2-1760-4266-BCC7-CA923CBCF16C}") = "docker-compose", "docker-compose.dcproj", "{23F1DEAE-433B-4F86-8015-54BBB64CF741}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -41,6 +43,18 @@ Global
 		{1295F40B-A15D-4FBB-A055-51CF3E1B48C5}.Release|x64.Build.0 = Release|Any CPU
 		{1295F40B-A15D-4FBB-A055-51CF3E1B48C5}.Release|x86.ActiveCfg = Release|Any CPU
 		{1295F40B-A15D-4FBB-A055-51CF3E1B48C5}.Release|x86.Build.0 = Release|Any CPU
+		{23F1DEAE-433B-4F86-8015-54BBB64CF741}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{23F1DEAE-433B-4F86-8015-54BBB64CF741}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{23F1DEAE-433B-4F86-8015-54BBB64CF741}.Debug|x64.ActiveCfg = Debug|Any CPU
+		{23F1DEAE-433B-4F86-8015-54BBB64CF741}.Debug|x64.Build.0 = Debug|Any CPU
+		{23F1DEAE-433B-4F86-8015-54BBB64CF741}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{23F1DEAE-433B-4F86-8015-54BBB64CF741}.Debug|x86.Build.0 = Debug|Any CPU
+		{23F1DEAE-433B-4F86-8015-54BBB64CF741}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{23F1DEAE-433B-4F86-8015-54BBB64CF741}.Release|Any CPU.Build.0 = Release|Any CPU
+		{23F1DEAE-433B-4F86-8015-54BBB64CF741}.Release|x64.ActiveCfg = Release|Any CPU
+		{23F1DEAE-433B-4F86-8015-54BBB64CF741}.Release|x64.Build.0 = Release|Any CPU
+		{23F1DEAE-433B-4F86-8015-54BBB64CF741}.Release|x86.ActiveCfg = Release|Any CPU
+		{23F1DEAE-433B-4F86-8015-54BBB64CF741}.Release|x86.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

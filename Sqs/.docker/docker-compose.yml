@@ -1,4 +1,4 @@
-version: '3'
+version: '3.4'
 
 services:
     localstack:
@@ -27,8 +27,8 @@ services:
         command: >
           "
             while ! aws --endpoint-url=http://localstack:4566 sqs list-queues > /dev/null; do echo waiting; sleep 3; done;
-            aws --endpoint-url=http://localstack:4566 sqs create-queue --queue-name CreateAccountMessage
-            aws --endpoint-url=http://localstack:4566 sqs create-queue --queue-name CreateAccountMessage.fifo --attributes FifoQueue=true
+            aws --endpoint-url=http://localstack:4566 sqs create-queue --queue-name CreateAccountMessageQueue
+            aws --endpoint-url=http://localstack:4566 sqs create-queue --queue-name CreateAccountMessageQueue.fifo --attributes FifoQueue=true
             
             aws --endpoint-url=http://localstack:4566 sqs list-queues
             echo 'SQS-DONE!' 
@@ -41,10 +41,9 @@ services:
             - AWS_SECRET_ACCESS_KEY=guest
             - AWS_DEFAULT_REGION=us-east-1
             - ASPNETCORE_ENVIRONMENT=Development
-            - MessageQueueOptions__Host=http://localstack
-            - MessageQueueOptions__Port=4566
+            - MessageQueueOptions__ServiceURL=http://localstack:4566
+            - MessageQueueOptions__Region=us-east-1
             - MessageQueueOptions__GroupId=CreateAccountMessage
-            - MessageQueueOptions__RegionEndpoint=us-east-1
             - MessageQueueOptions__WaitTimeSeconds=1
             - MessageQueueOptions__VisibilityTimeout=1
             - MessageQueueOptions__EnableFifo=true
@@ -66,10 +65,9 @@ services:
             - AWS_SECRET_ACCESS_KEY=guest
             - AWS_DEFAULT_REGION=us-east-1
             - ASPNETCORE_ENVIRONMENT=Development
-            - MessageQueueOptions__Host=http://localstack
-            - MessageQueueOptions__Port=4566
+            - MessageQueueOptions__ServiceURL=http://localstack:4566
+            - MessageQueueOptions__Region=us-east-1
             - MessageQueueOptions__GroupId=CreateAccountMessage
-            - MessageQueueOptions__RegionEndpoint=us-east-1
             - MessageQueueOptions__WaitTimeSeconds=1
             - MessageQueueOptions__VisibilityTimeout=1
             - MessageQueueOptions__EnableFifo=true

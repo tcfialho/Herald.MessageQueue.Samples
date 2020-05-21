@@ -1,4 +1,4 @@
-version: '3.5'
+version: '3.4'
 
 services:
     azurite:
@@ -17,7 +17,7 @@ services:
         command: >
             "
                 while ! nc -z azurite 10001; do echo waiting; sleep 3; done;
-                curl -X PUT http://azurite:10001/devstoreaccount1/createaccountmessage
+                curl -X PUT http://azurite:10001/devstoreaccount1/createaccountmessagequeue
                 curl -X GET http://azurite:10001/devstoreaccount1?comp=list
                 echo 'AZURITE-DONE!'
             "

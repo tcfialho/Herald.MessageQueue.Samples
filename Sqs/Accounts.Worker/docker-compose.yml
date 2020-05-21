@@ -1,0 +1,59 @@
+version: '3.4'
+
+services:
+    localstack:
+        image: localstack/localstack:latest
+        ports:
+            - '4576:4576'
+            - '4566:4566'
+            - '8080:8080'
+        environment:
+            - SERVICES=sqs
+            - AWS_ACCESS_KEY_ID=guest
+            - AWS_SECRET_ACCESS_KEY=guest
+            - AWS_DEFAULT_REGION=us-east-1
+      
+    localstack-create-queues:
+        image: mesosphere/aws-cli:latest
+        environment:
+            - AWS_ACCESS_KEY_ID=guest
+            - AWS_SECRET_ACCESS_KEY=guest
+            - AWS_DEFAULT_REGION=us-east-1
+        depends_on:
+            - localstack
+        links: ["localstack"]
+        hostname: localstack-create-queues
+        entrypoint: /bin/sh -c
+        command: >
+          "
+            while ! aws --endpoint-url=http://localstack:4566 sqs list-queues > /dev/null; do echo waiting; sleep 3; done;
+            aws --endpoint-url=http://localstack:4566 sqs create-queue --queue-name CreateAccountMessageQueue
+            aws --endpoint-url=http://localstack:4566 sqs create-queue --queue-name CreateAccountMessageQueue.fifo --attributes FifoQueue=true
+            
+            aws --endpoint-url=http://localstack:4566 sqs list-queues
+            echo 'SQS-DONE!' 
+          "
+        
+    accounts.worker:
+        image: ${DOCKER_REGISTRY-}accountsworker
+        environment:
+            - AWS_ACCESS_KEY_ID=guest
+            - AWS_SECRET_ACCESS_KEY=guest
+            - AWS_DEFAULT_REGION=us-east-1
+            - ASPNETCORE_ENVIRONMENT=Development
+            - MessageQueueOptions__ServiceURL=http://localstack:4566
+            - MessageQueueOptions__Region=us-east-1
+            - MessageQueueOptions__GroupId=CreateAccountMessage
+            - MessageQueueOptions__WaitTimeSeconds=1
+            - MessageQueueOptions__VisibilityTimeout=1
+            - MessageQueueOptions__EnableFifo=true
+        restart: unless-stopped
+        ports:
+            - "5002:80"
+        build:
+            context: ../Accounts.Worker
+            dockerfile: Accounts.Worker/Dockerfile
+        depends_on:
+            - localstack
+            - localstack-create-queues
+        links: ["localstack", "localstack-create-queues"]

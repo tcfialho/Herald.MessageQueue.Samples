@@ -8,7 +8,7 @@ FROM mcr.microsoft.com/dotnet/core/sdk:3.0-alpine AS build
 WORKDIR /src
 COPY ["Accounts.Worker/Accounts.Worker.csproj", "Accounts.Worker/"]
 COPY ["Accounts.Domain/Accounts.Domain.csproj", "Accounts.Domain/"]
-RUN dotnet restore "Accounts.Worker/Accounts.Worker.csproj"
+RUN dotnet restore "Accounts.Worker/Accounts.Worker.csproj" -s https://api.nuget.org/v3/index.json -s https://nuget.fury.io/tcfialho/
 COPY . .
 WORKDIR "/src/Accounts.Worker"
 RUN dotnet build "Accounts.Worker.csproj" -c Release -o /app/build

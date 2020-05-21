@@ -52,7 +52,7 @@ services:
         image: ${DOCKER_REGISTRY-}accountsapi
         environment:
             - ASPNETCORE_ENVIRONMENT=Development
-            - MessageQueueOptions__Host=broker:29092
+            - MessageQueueOptions__BootstrapServers=broker:29092
             - MessageQueueOptions__GroupId=CreateAccountMessage
         restart: unless-stopped
         depends_on:
@@ -70,7 +70,7 @@ services:
         image: ${DOCKER_REGISTRY-}accountsworker
         environment:
             - ASPNETCORE_ENVIRONMENT=Development
-            - MessageQueueOptions__Host=broker:29092
+            - MessageQueueOptions__BootstrapServers=broker:29092
             - MessageQueueOptions__GroupId=CreateAccountMessage
         restart: unless-stopped
         depends_on:

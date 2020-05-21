@@ -7,7 +7,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Accounts.Domain", "Accounts
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Accounts.Worker", "Accounts.Worker\Accounts.Worker.csproj", "{1295F40B-A15D-4FBB-A055-51CF3E1B48C5}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Herald.MessageQueue.HealthCheck.Sqs", "..\..\..\Herald.MessageQueue.HealthCheck\Herald.MessageQueue.HealthCheck.Sqs\Herald.MessageQueue.HealthCheck.Sqs.csproj", "{88292013-29DC-497E-83BA-8217F84129EB}"
+Project("{E53339B2-1760-4266-BCC7-CA923CBCF16C}") = "docker-compose", "docker-compose.dcproj", "{B343CE78-3AA4-45FE-9B5A-BB43A8BA5CD3}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -43,18 +43,18 @@ Global
 		{1295F40B-A15D-4FBB-A055-51CF3E1B48C5}.Release|x64.Build.0 = Release|Any CPU
 		{1295F40B-A15D-4FBB-A055-51CF3E1B48C5}.Release|x86.ActiveCfg = Release|Any CPU
 		{1295F40B-A15D-4FBB-A055-51CF3E1B48C5}.Release|x86.Build.0 = Release|Any CPU
-		{88292013-29DC-497E-83BA-8217F84129EB}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{88292013-29DC-497E-83BA-8217F84129EB}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{88292013-29DC-497E-83BA-8217F84129EB}.Debug|x64.ActiveCfg = Debug|Any CPU
-		{88292013-29DC-497E-83BA-8217F84129EB}.Debug|x64.Build.0 = Debug|Any CPU
-		{88292013-29DC-497E-83BA-8217F84129EB}.Debug|x86.ActiveCfg = Debug|Any CPU
-		{88292013-29DC-497E-83BA-8217F84129EB}.Debug|x86.Build.0 = Debug|Any CPU
-		{88292013-29DC-497E-83BA-8217F84129EB}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{88292013-29DC-497E-83BA-8217F84129EB}.Release|Any CPU.Build.0 = Release|Any CPU
-		{88292013-29DC-497E-83BA-8217F84129EB}.Release|x64.ActiveCfg = Release|Any CPU
-		{88292013-29DC-497E-83BA-8217F84129EB}.Release|x64.Build.0 = Release|Any CPU
-		{88292013-29DC-497E-83BA-8217F84129EB}.Release|x86.ActiveCfg = Release|Any CPU
-		{88292013-29DC-497E-83BA-8217F84129EB}.Release|x86.Build.0 = Release|Any CPU
+		{B343CE78-3AA4-45FE-9B5A-BB43A8BA5CD3}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B343CE78-3AA4-45FE-9B5A-BB43A8BA5CD3}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B343CE78-3AA4-45FE-9B5A-BB43A8BA5CD3}.Debug|x64.ActiveCfg = Debug|Any CPU
+		{B343CE78-3AA4-45FE-9B5A-BB43A8BA5CD3}.Debug|x64.Build.0 = Debug|Any CPU
+		{B343CE78-3AA4-45FE-9B5A-BB43A8BA5CD3}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{B343CE78-3AA4-45FE-9B5A-BB43A8BA5CD3}.Debug|x86.Build.0 = Debug|Any CPU
+		{B343CE78-3AA4-45FE-9B5A-BB43A8BA5CD3}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B343CE78-3AA4-45FE-9B5A-BB43A8BA5CD3}.Release|Any CPU.Build.0 = Release|Any CPU
+		{B343CE78-3AA4-45FE-9B5A-BB43A8BA5CD3}.Release|x64.ActiveCfg = Release|Any CPU
+		{B343CE78-3AA4-45FE-9B5A-BB43A8BA5CD3}.Release|x64.Build.0 = Release|Any CPU
+		{B343CE78-3AA4-45FE-9B5A-BB43A8BA5CD3}.Release|x86.ActiveCfg = Release|Any CPU
+		{B343CE78-3AA4-45FE-9B5A-BB43A8BA5CD3}.Release|x86.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

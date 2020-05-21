@@ -8,8 +8,8 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="Herald.MessageQueue.AzureStorageQueue" Version="3.1.1" />
-    <PackageReference Include="Herald.MessageQueue.HealthCheck.AzureStorageQueue" Version="2.0.1" />
+    <PackageReference Include="Herald.MessageQueue.AzureStorageQueue" Version="4.1.1" />
+    <PackageReference Include="Herald.MessageQueue.HealthCheck.AzureStorageQueue" Version="3.0.0" />
     <PackageReference Include="Microsoft.Extensions.Logging.Debug" Version="3.0.0" />
     <PackageReference Include="Microsoft.VisualStudio.Azure.Containers.Tools.Targets" Version="1.10.8" />
     <PackageReference Include="MediatR.Extensions.Microsoft.DependencyInjection" Version="8.0.0" />
