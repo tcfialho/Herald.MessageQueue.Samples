@@ -55,6 +55,7 @@ services:
             - ASPNETCORE_ENVIRONMENT=Development
             - MessageQueueOptions__BootstrapServers=broker:29092
             - MessageQueueOptions__GroupId=CreateAccountMessage
+            - MessageQueueOptions__RequestDelaySeconds=2
         restart: unless-stopped
         depends_on:
             - zookeeper

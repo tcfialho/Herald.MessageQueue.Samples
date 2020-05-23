@@ -36,6 +36,7 @@ services:
             - MessageQueueOptions__Port=5672
             - MessageQueueOptions__Username=myUserName
             - MessageQueueOptions__Password=myPassword
+            - MessageQueueOptions__RequestDelaySeconds=2
         restart: unless-stopped
         ports:
             - "5002:80"

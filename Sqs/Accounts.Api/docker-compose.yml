@@ -47,6 +47,7 @@ services:
             - MessageQueueOptions__WaitTimeSeconds=1
             - MessageQueueOptions__VisibilityTimeout=1
             - MessageQueueOptions__EnableFifo=true
+            - MessageQueueOptions__RequestDelaySeconds=2
         restart: unless-stopped
         ports:
             - "5000:80"

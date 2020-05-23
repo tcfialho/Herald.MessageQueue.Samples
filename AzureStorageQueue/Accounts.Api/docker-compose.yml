@@ -27,7 +27,7 @@ services:
         environment:
             - ASPNETCORE_ENVIRONMENT=Development
             - MessageQueueOptions__ConnectionString=DefaultEndpointsProtocol=http;AccountName=devstoreaccount1;AccountKey=Eby8vdM02xNOcqFlqUwJPLlmEtlCDXJ1OUzFT50uSRZ6IFsuFq2UVErCz4I6tq/K1SZFPTOtr/KBHBeksoGMGw==;BlobEndpoint=http://azurite:10000/devstoreaccount1;QueueEndpoint=http://azurite:10001/devstoreaccount1;
-            - MessageQueueOptions__WaitTimeSeconds=2
+            - MessageQueueOptions__RequestDelaySeconds=2
         restart: unless-stopped
         ports:
             - "5000:80"
