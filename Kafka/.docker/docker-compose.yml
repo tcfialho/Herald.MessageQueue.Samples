@@ -47,6 +47,17 @@ services:
                            kafka-topics --create --topic CreateAccountMessageTopic --if-not-exists --zookeeper zookeeper:2181 --partitions 1 --replication-factor 1 && \
                            kafka-topics --list --zookeeper zookeeper:2181 && \
                            echo KAFKA-DONE!'"
+                           
+    kafdrop:
+        image: obsidiandynamics/kafdrop
+        container_name: kafdrop
+        ports:
+            - "9000:9000"
+        environment:
+            KAFKA_BROKERCONNECT: 'broker:29092'
+        depends_on:
+            - zookeeper
+            - broker
 
     accounts.api:
         image: ${DOCKER_REGISTRY-}accountsapi
