@@ -6,7 +6,7 @@ Samples for [Herald.MessageQueue](https://github.com/tcfialho/Herald.MessageQueu
 - Accounts.Worker - A background service consumer with health check running at http://localhost:5002/hc
 
 # Requirements
-The sample app is designed to with an RabbitMq on top of Docker. If your platform supports docker natively, you can simply install it.
+Docker
 
 # How to
 Just call run.sh and the two samples will be running.
