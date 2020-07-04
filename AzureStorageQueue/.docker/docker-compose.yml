@@ -2,14 +2,14 @@ version: '3.4'
 
 services:
     azurite:
-        image: 'arafato/azurite:latest'
+        image: arafato/azurite:2.6.5
         hostname: azurite
         ports:
             - '10000:10000'
             - '10001:10001'
 
     azurite-create-queues:
-        image: curlimages/curl:latest
+        image: curlimages/curl:7.71.0
         depends_on:
             - azurite
         hostname: azurite-create-queues

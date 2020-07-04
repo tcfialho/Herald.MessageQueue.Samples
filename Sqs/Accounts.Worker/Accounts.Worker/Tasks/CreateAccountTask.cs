@@ -30,7 +30,7 @@ namespace Accounts.Worker.Tasks
             {
                 await foreach (var message in _messageQueue.Receive<CreateAccountMessage>(stoppingToken))
                 {
-                    _logger.LogInformation($"Consuming message: {message.CreationDate} - {message.Account.Id} - {message.Account.Name}");
+                    _logger.LogInformation($"Consuming message: {DateTime.Now} - {message.Account.Id} - {message.Account.Name}");
                     await _messageQueue.Received(message);
                 }
             }

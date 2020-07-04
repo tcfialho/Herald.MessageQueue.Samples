@@ -2,9 +2,8 @@ version: '3.4'
 
 services:
     localstack:
-        image: localstack/localstack:latest
+        image: localstack/localstack:0.11.2
         ports:
-            - '4576:4576'
             - '4566:4566'
             - '8080:8080'
         environment:
@@ -14,7 +13,7 @@ services:
             - AWS_DEFAULT_REGION=us-east-1
       
     localstack-create-queues:
-        image: mesosphere/aws-cli:latest
+        image: amazon/aws-cli:2.0.28
         environment:
             - AWS_ACCESS_KEY_ID=guest
             - AWS_SECRET_ACCESS_KEY=guest
@@ -50,7 +49,7 @@ services:
             - MessageQueueOptions__RequestDelaySeconds=2
         restart: unless-stopped
         ports:
-            - "5000:80"
+            - '5000:80'
         build:
             context: ../Accounts.Api
             dockerfile: Accounts.Api/Dockerfile

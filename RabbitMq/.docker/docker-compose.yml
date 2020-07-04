@@ -2,7 +2,7 @@ version: '3.4'
 
 services:
     rabbitmq:
-        image: 'rabbitmq:3-management-alpine'
+        image: rabbitmq:3.8.5-management-alpine
         hostname: rabbitmq
         environment:
             - RABBITMQ_DEFAULT_USER=myUserName
